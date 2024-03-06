@@ -1,5 +1,4 @@
 const mongooes = require('mongoose')
-
 const Product = mongooes.model("Product", {
     id:{
         type:Number,
@@ -35,4 +34,27 @@ const Product = mongooes.model("Product", {
     },
 });
 
-module.exports = Product
+const User = mongooes.model('Users', {
+    name : {
+        type : String,
+    },
+    email : {
+        type : String,
+        unique : true,
+    },
+    password: {
+        type : String,
+    },
+    cartdata : {
+        type : Object,
+    },
+    date : {
+        type : Date,
+        default : Date.now,
+    }
+})
+
+module.exports = {
+    Product,
+    User,
+}

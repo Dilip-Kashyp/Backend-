@@ -1,17 +1,28 @@
-const cors = require('cors')
 const express =  require('express')
+const cors = require('cors')
+
+const dataBase = require('./routes/dataBase')
+const imageUpload = require('./routes/imageUpload')
+
 const app = express();
-const dataBase = require('./routes/data_base')
-const imageUpload = require('./routes/image_Upload');
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => res.send("this is for testing"));
+app.get("/ping", (req, res) => {
+    res.json({
+        "ping" : "pong"
+    })
+})
 
-app.use("/",imageUpload);
+app.use("/", imageUpload);
 app.use("/", dataBase);
-app.use("/addPrduct", dataBase);
+app.use("/addProduct", dataBase);
 app.use("/allProduct", dataBase);
+
+
+
+
+
 
 module.exports =  app
